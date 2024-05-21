@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blackjack</title>
+</head>
+<body>
+    <h1>ブラックジャック</h1>
+    <div>
+        <h2>プレイヤーの手札: </h2>
+        <ul>
+            <li th:each="card : ${playerHand}" th:text="${card}">カード</li>
+        </ul>
+    </div>
+    <div>
+        <h2>ディーラーの手札: </h2>
+        <ul>
+            <li th:text="${dealerHand}">カード</li>
+            <li th:if="${hiddenCard}">[カード]</li>
+            <li th:if="!${hiddenCard}" th:each="card : ${dealerHand}" th:text="${card}">カード</li>
+        </ul>
+    </div>
+    <div>
+        <p th:text="${message}">メッセージ</p>
+        <form method="post" action="/hit">
+            <button type="submit">ヒット</button>
+        </form>
+        <form method="post" action="/stay">
+            <button type="submit">スタンド</button>
+        </form>
+    </div>
+</body>
+</html>
