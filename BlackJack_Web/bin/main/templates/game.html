@@ -1,0 +1,155 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--	<title>Blackjack</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--	<h1>ブラックジャック</h1>-->
+<!--	<div>-->
+<!--		<h2>プレイヤーの手札: </h2>-->
+<!--		<ul>-->
+<!--			<li th:each="card : ${playerHand}" th:text="${card}">カード</li>-->
+<!--		</ul>-->
+<!--	</div>-->
+<!--	<div>-->
+<!--		<h2>ディーラーの手札: </h2>-->
+<!--		<ul>-->
+<!--			<li th:if="${hiddenCard}">-->
+<!--				<span th:text="${dealerHand.getCard()}"></span> [カード]-->
+<!--			</li>-->
+<!--			<li th:unless="${hiddenCard}" th:each="card : ${dealerHand}" th:text="${card}">カード</li>-->
+<!--		</ul>-->
+<!--	</div>-->
+<!--	<div>-->
+<!--		<p th:text="${message}">メッセージ</p>-->
+<!--		<form method="post" action="/hit">-->
+<!--			<button type="submit" th:disabled="${gameResult != null}">ヒット</button>-->
+<!--		</form>-->
+<!--		<form method="post" action="/stay">-->
+<!--			<button type="submit" th:disabled="${gameResult != null}">スタンド</button>-->
+<!--		</form>-->
+<!--		<form method="get" action="/newgame">-->
+<!--			<button type="submit" th:disabled="${gameResult == null}">もう一回</button>-->
+<!--		</form>-->
+<!--	</div>-->
+<!--</body>-->
+
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブラックジャック</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 30px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>ブラックジャック</h1>
+        <div>
+            <h2>プレイヤーの手札:</h2>
+            <ul>
+                <li th:each="card : ${playerHand}" th:text="${card}">カード</li>
+            </ul>
+        </div>
+        <div>
+            <h2>ディーラーの手札:</h2>
+            <ul>
+                <li th:if="${hiddenCard}">
+                    <span th:text="${dealerHand.getCard()}"></span> [カード]
+                </li>
+                <li th:unless="${hiddenCard}" th:each="card : ${dealerHand}" th:text="${card}">カード</li>
+            </ul>
+        </div>
+        <div>
+            <p class="message" th:text="${message}">メッセージ</p>
+            <form method="post" action="/hit">
+                <button type="submit" th:disabled="${gameResult != null}">ヒット</button>
+            </form>
+            <form method="post" action="/stay">
+                <button type="submit" th:disabled="${gameResult != null}">スタンド</button>
+            </form>
+            <form method="get" action="/newgame">
+                <button type="submit" th:disabled="${gameResult == null}">もう一回</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
