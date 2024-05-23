@@ -29,7 +29,7 @@ public class GameController {
 		model.addAttribute("playerHand", playerHand);
 		model.addAttribute("dealerHand", dealerHand.get(0));
 		model.addAttribute("hiddenCard", true);
-		model.addAttribute("message", "choose hit or stand");
+		model.addAttribute("message", "hit or stand?");
 		model.addAttribute("gameResult", gameResult);
 
 		return "game";
